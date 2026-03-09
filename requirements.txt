@@ -1,0 +1,66 @@
+# Industrial Protocol Clients - Python依赖包
+# Python版本要求: >= 3.7
+
+# ==================== 核心依赖 ====================
+# 基础协议实现只需Python标准库
+# 标准库包括: socket, struct, time, enum, typing, logging, ctypes, os, asyncio
+
+# ==================== 协议特定依赖 ====================
+
+# Modbus RTU (串口通信)
+pyserial>=3.5              # 串口通信库，Modbus RTU必需
+
+# OPC UA (工业4.0核心协议)
+asyncua>=1.0.0             # OPC UA异步客户端库
+cryptography>=3.4.8        # OPC UA安全通信
+
+# Profinet (可选，建议使用专业库)
+# python-profinet>=0.1.0   # Profinet协议库（目前无维护，仅作参考）
+# pyprofibus>=1.0.0        # Profibus/Profinet库
+
+# S7通信协议 (西门子PLC)
+# snap7>=1.0.0             # S7通信库（可选，本实现为纯Python）
+
+# ==================== 开发工具 ====================
+pytest>=7.0.0              # 单元测试框架
+pytest-cov>=4.0.0          # 测试覆盖率
+pytest-asyncio>=0.21.0     # 异步测试支持
+black>=22.0.0              # 代码格式化
+flake8>=5.0.0              # 代码风格检查
+mypy>=0.990                # 类型检查
+
+# ==================== 文档生成 ====================
+sphinx>=5.0.0              # 文档生成工具
+sphinx-rtd-theme>=1.0.0    # ReadTheDocs主题
+sphinx-autodoc-typehints>=1.19.0  # 类型提示文档
+
+# ==================== 性能工具 ====================
+memory-profiler>=0.60.0    # 内存分析
+line-profiler>=4.0.0       # 性能分析
+aiomonitor>=0.6.0          # 异步监控
+
+# ==================== 实用工具 ====================
+ipython>=8.0.0             # 交互式开发环境
+rich>=13.0.0               # 美化终端输出
+click>=8.0.0               # 命令行工具
+
+# ==================== 安装说明 ====================
+# 
+# 最小安装（仅核心Modbus TCP/FINS/CIP/Melsec）:
+#   无需安装依赖，使用Python标准库
+#
+# Modbus RTU支持:
+#   pip install pyserial
+#
+# OPC UA支持:
+#   pip install asyncua cryptography
+#
+# 完整开发环境:
+#   pip install -r requirements.txt
+#
+# ==================== 注意事项 ====================
+# 1. Modbus TCP、FINS、CIP、Melsec 无需任何依赖
+# 2. OPT光源控制器需要厂商SDK DLL文件
+# 3. Profinet完整实现建议使用专业库
+# 4. S7协议本实现为纯Python，无需snap7
+# 5. 异步操作使用Python标准库asyncio
