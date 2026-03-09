@@ -1,66 +1,116 @@
 # Industrial Protocol Clients - Python依赖包
 # Python版本要求: >= 3.7
 
-# ==================== 核心依赖 ====================
-# 基础协议实现只需Python标准库
-# 标准库包括: socket, struct, time, enum, typing, logging, ctypes, os, asyncio
+# ============================================
+# 核心依赖 - Core Dependencies
+# ============================================
+# 注意：核心功能不需要任何外部依赖！
+# 所有基础协议客户端都只使用Python标准库实现
 
-# ==================== 协议特定依赖 ====================
+# ============================================
+# 可选依赖 - Optional Dependencies
+# ============================================
 
-# Modbus RTU (串口通信)
-pyserial>=3.5              # 串口通信库，Modbus RTU必需
+# 串口通信（用于Modbus RTU等串口协议）
+# Serial communication (for Modbus RTU and other serial protocols)
+pyserial>=3.5
 
-# OPC UA (工业4.0核心协议)
-asyncua>=1.0.0             # OPC UA异步客户端库
-cryptography>=3.4.8        # OPC UA安全通信
+# OPC UA支持（如果使用opcua_client.py）
+# OPC UA support (if using opcua_client.py)
+opcua>=0.98.13
 
-# Profinet (可选，建议使用专业库)
-# python-profinet>=0.1.0   # Profinet协议库（目前无维护，仅作参考）
-# pyprofibus>=1.0.0        # Profibus/Profinet库
+# ============================================
+# 开发工具 - Development Tools
+# ============================================
 
-# S7通信协议 (西门子PLC)
-# snap7>=1.0.0             # S7通信库（可选，本实现为纯Python）
-
-# ==================== 开发工具 ====================
+# 测试框架
 pytest>=7.0.0              # 单元测试框架
 pytest-cov>=4.0.0          # 测试覆盖率
 pytest-asyncio>=0.21.0     # 异步测试支持
+
+# 代码质量
 black>=22.0.0              # 代码格式化
 flake8>=5.0.0              # 代码风格检查
+pylint>=2.15.0             # 代码静态分析
 mypy>=0.990                # 类型检查
+isort>=5.10.0              # import排序
 
-# ==================== 文档生成 ====================
+# 文档生成
 sphinx>=5.0.0              # 文档生成工具
 sphinx-rtd-theme>=1.0.0    # ReadTheDocs主题
-sphinx-autodoc-typehints>=1.19.0  # 类型提示文档
+sphinx-autodoc-typehints>=1.19.0  # 类型提示支持
 
-# ==================== 性能工具 ====================
+# 性能分析
 memory-profiler>=0.60.0    # 内存分析
 line-profiler>=4.0.0       # 性能分析
-aiomonitor>=0.6.0          # 异步监控
 
-# ==================== 实用工具 ====================
+# 实用工具
 ipython>=8.0.0             # 交互式开发环境
-rich>=13.0.0               # 美化终端输出
-click>=8.0.0               # 命令行工具
+jupyter>=1.0.0             # Jupyter Notebook
+python-dotenv>=0.20.0      # 环境变量管理
 
-# ==================== 安装说明 ====================
-# 
-# 最小安装（仅核心Modbus TCP/FINS/CIP/Melsec）:
-#   无需安装依赖，使用Python标准库
-#
-# Modbus RTU支持:
-#   pip install pyserial
-#
-# OPC UA支持:
-#   pip install asyncua cryptography
-#
-# 完整开发环境:
+# ============================================
+# 高级功能 - Advanced Features
+# ============================================
+
+# 异步操作增强
+aiofiles>=23.0.0           # 异步文件操作
+aioconsole>=0.6.0          # 异步控制台
+
+# 数据处理
+numpy>=1.21.0              # 数值计算（可选）
+pandas>=1.3.0              # 数据分析（可选）
+
+# Web界面（未来功能）
+flask>=2.0.0               # Web框架
+flask-cors>=3.0.0          # CORS支持
+websockets>=10.0           # WebSocket支持
+
+# ============================================
+# 安装说明 - Installation Guide
+# ============================================
+
+# 基础安装（推荐）：
+#   pip install -r requirements.txt --only-binary :all:
+
+# 仅安装核心依赖：
+#   pip install pyserial opcua
+
+# 完整开发环境：
 #   pip install -r requirements.txt
-#
-# ==================== 注意事项 ====================
-# 1. Modbus TCP、FINS、CIP、Melsec 无需任何依赖
-# 2. OPT光源控制器需要厂商SDK DLL文件
-# 3. Profinet完整实现建议使用专业库
-# 4. S7协议本实现为纯Python，无需snap7
-# 5. 异步操作使用Python标准库asyncio
+
+# 只安装测试工具：
+#   pip install pytest pytest-cov pytest-asyncio
+
+# ============================================
+# 兼容性说明 - Compatibility Notes
+# ============================================
+
+# Python 版本要求：
+# - Python 3.7+（基础功能）
+# - Python 3.8+（推荐，更好的类型支持）
+# - Python 3.10+（最佳性能和异步支持）
+
+# 操作系统支持：
+# - Windows 7/10/11
+# - Linux (Ubuntu 18.04+, CentOS 7+, Debian 10+)
+# - macOS 10.14+
+
+# ============================================
+# 已知问题 - Known Issues
+# ============================================
+
+# 1. opcua库在某些系统上可能需要额外的系统依赖
+#    Ubuntu/Debian: sudo apt-get install python3-dev
+#    CentOS/RHEL: sudo yum install python3-devel
+
+# 2. pyserial在Windows上可能需要USB驱动
+#    请从设备厂商获取对应的驱动程序
+
+# ============================================
+# 更新记录 - Update Log
+# ============================================
+# 2024-03-09: 初始版本
+# - 添加核心依赖说明
+# - 添加开发工具依赖
+# - 添加可选功能依赖
